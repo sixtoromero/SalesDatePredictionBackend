@@ -1,0 +1,6 @@
+@AIRIS.DocBD.Services.APIRest_HostAddress = http://localhost:5291
+
+GET {{AIRIS.DocBD.Services.APIRest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

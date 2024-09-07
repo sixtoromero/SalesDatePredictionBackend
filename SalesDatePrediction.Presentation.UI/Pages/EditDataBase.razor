@@ -1,0 +1,81 @@
+﻿@page "/edatabase"
+@page "/edatabase/{id:int}"
+@using AIRIS.DocBD.Application.DTO
+@using AIRIS.DocBD.Transversal.Common
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@if (Id is null)
+{
+    <PageTitle>Crear nuevo registro</PageTitle>
+    <h3>Crear nuevo registro</h3>
+}
+else
+{
+    <PageTitle>Base de datos <strong>@database!.DatabaseName</strong></PageTitle>
+    <h3>Editar @database!.DatabaseName</h3>
+}
+
+<EditForm Model="database" OnSubmit="HandleSubmit">
+    <div>
+        <label for="DatabaseName">Nombre de la base de datos</label>
+        <InputText id="DatabaseName" @bind-Value="database.DatabaseName" class="form-control" />
+    </div>
+    <div>
+        <label for="Description">Descripción</label>        
+        <InputTextArea id="Description" @bind-Value="database.Description" class="form-control" />
+    </div>
+    <div>
+        <label for="ConnectionString">Cadena de Conexión</label>
+        <InputTextArea id="ConnectionString" @bind-Value="database.ConnectionString" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    @if (Id is not null)
+    {
+        <button type="button" class="btn btn-danger" @onclick="DeleteDatabase">Eliminar</button>
+    }
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    DatabasesDTO? database = new DatabasesDTO();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            var result = await Http.GetFromJsonAsync<Response<DatabasesDTO>>($"/api/Databases/GetAsync?ID={Id}");
+            if (result!.IsSuccess)
+            {
+                if (result.Data is not null)
+                {
+                    database = result!.Data;
+                }
+            }
+        }
+    }
+
+    async Task HandleSubmit()
+    {
+        if (Id is null)
+        {
+            database!.UsersId = 1;
+            await Http.PostAsJsonAsync("/api/Databases/InsertAsync", database);
+        }
+        else
+        {
+            database!.DatabaseId = Id ?? 0;
+            await Http.PutAsJsonAsync("/api/Databases/UpdateAsync", database);
+        }
+
+        NavigationManager.NavigateTo("/database");
+    }
+
+    async Task DeleteDatabase()
+    {
+        await Http.DeleteAsync($"/api/Databases/DelAsync?Id={Id}");
+        NavigationManager.NavigateTo("/database");
+    }
+}

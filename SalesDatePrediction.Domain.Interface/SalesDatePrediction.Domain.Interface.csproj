@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="IClientesDomain.cs" />
+    <Compile Remove="IUsuariosDomain.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SalesDatePrediction.Domain.Entity\SalesDatePrediction.Domain.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

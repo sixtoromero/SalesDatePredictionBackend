@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="Resources\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Resources\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\ClientesController.cs" />
+    <Compile Remove="Controllers\ColumnsController.cs" />
+    <Compile Remove="Controllers\ConstraintsController.cs" />
+    <Compile Remove="Controllers\DatabasesController.cs" />
+    <Compile Remove="Controllers\IndexesController.cs" />
+    <Compile Remove="Controllers\TablesController.cs" />
+    <Compile Remove="Controllers\UsersController.cs" />
+    <Compile Remove="Controllers\UsuariosController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SalesDatePrediction.Application.DTO\SalesDatePrediction.Application.DTO.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Application.Interface\SalesDatePrediction.Application.Interface.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Application.Main\SalesDatePrediction.Application.Main.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Domain.Core\SalesDatePrediction.Domain.Core.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Domain.Entity\SalesDatePrediction.Domain.Entity.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Domain.Interface\SalesDatePrediction.Domain.Interface.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.InfraStructure.Data\SalesDatePrediction.InfraStructure.Data.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.InfraStructure.Interface\SalesDatePrediction.InfraStructure.Interface.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.InfraStructure.Repository\SalesDatePrediction.InfraStructure.Repository.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Transversal.Common\SalesDatePrediction.Transversal.Common.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Transversal.Logging\SalesDatePrediction.Transversal.Logging.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Transversal.Mapper\SalesDatePrediction.Transversal.Mapper.csproj" />
+  </ItemGroup>
+
+</Project>

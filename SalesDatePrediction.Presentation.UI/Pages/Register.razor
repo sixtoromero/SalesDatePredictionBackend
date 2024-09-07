@@ -1,0 +1,81 @@
+﻿@page "/register"
+@using AIRIS.DocBD.Application.DTO
+@attribute [AllowAnonymous]
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+
+<EditForm Model="registerModel">
+    <div class="vh-100 d-flex justify-content-center align-items-center bg-light">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="card-body p-5">
+                        <div class="mb-3 mt-md-3">
+                            <h2 class="fw-bold mb-3">AIRIS DocBD</h2>
+                            <p class="mb-5">Registrate</p>
+                            <div class="mb-3">
+                                <label for="FirstName">Nombres: </label>
+                                <InputText id="FirstName" @bind-Value="registerModel.FirstName" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="LastName">Apellidos: </label>
+                                <InputText id="LastName" @bind-Value="registerModel.LastName" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="UserName">Usuario: </label>
+                                <InputText id="UserName" @bind-Value="registerModel.UserName" class="form-control" />
+                            </div>                            
+                            <div class="mb-3">
+                                <label for="Email">Correo: </label>
+                                <InputText id="Email" @bind-Value="registerModel.Email" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="PasswordHash">Contraseña: </label>
+                                <InputText id="PasswordHash" type="password" @bind-Value="registerModel.PasswordHash" class="form-control" />
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-outline-dark" type="button" @onclick="HandleRegister">
+                                    Registrarme
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <p class="mb-0 text-center">
+                                Ya tienes una cuenta?
+                                <button class="btn btn-link" @onclick="LoginUser">
+                                    Inicia Sesión
+                                </button>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private UsersDTO registerModel = new UsersDTO();
+
+    async Task HandleRegister()
+    {
+        var result = await AuthService.Register(registerModel);
+
+        if (!string.IsNullOrEmpty(result))
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            Console.WriteLine("Error en el registro de usuario");
+        }
+    }
+
+    private void LoginUser()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+}

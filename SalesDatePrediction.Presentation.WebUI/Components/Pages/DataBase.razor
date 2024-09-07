@@ -1,0 +1,60 @@
+﻿@page "/database"
+@using System.Collections.Generic
+@using System.Collections.Generic
+@using System.ComponentModel.DataAnnotations
+
+<PageTitle>Database</PageTitle>
+
+
+
+
+<PageTitle>Database</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-5">
+    <MudText Typo="Typo.h3">Administra tus bases de datos</MudText>
+    <MudGrid Class="mt-4">
+        <MudItem xs="12">
+            <MudTable Items="Databases" Hover="true" Sortable="true">
+                <HeaderContent>
+                    <MudTh>Nombre</MudTh>
+                    <MudTh>Descripción</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Nombre">@context.Name</MudTd>
+                    <MudTd DataLabel="Descripción">@context.Description</MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudItem>
+        <MudItem xs="12" class="mt-4">
+            <MudText Typo="Typo.h4">Agregar Nueva Base de Datos</MudText>
+            <EditForm Model="NewDatabase" OnValidSubmit="AddDatabase">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <MudTextField @bind-Value="NewDatabase.Name" Label="Nombre" Required="true" />
+                <MudTextField @bind-Value="NewDatabase.Description" Label="Descripción" Required="true" />
+
+                <MudButton Type="Submit" Color="Color.Primary">Agregar</MudButton>
+            </EditForm>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private List<DatabaseModel> Databases { get; set; } = new List<DatabaseModel>();
+    private DatabaseModel NewDatabase { get; set; } = new DatabaseModel();
+
+    private void AddDatabase()
+    {
+        Databases.Add(NewDatabase);
+        NewDatabase = new DatabaseModel(); // Reset form
+    }
+
+    public class DatabaseModel
+    {
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Description { get; set; }
+    }
+}

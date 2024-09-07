@@ -1,0 +1,85 @@
+7/07/2024 10:34:32 a. m.	Este registro contiene información acerca de la operación de importación de esquema en el proyecto 'AIRIS.DocBD.DataBase' del equipo 'DESKTOP-IEOP1NV' por el usuario 'USUARIO'.
+7/07/2024 10:34:33 a. m.	Se inició la importación del esquema de la base de datos.
+7/07/2024 10:34:39 a. m.	Recopilando credenciales de la base de datos
+7/07/2024 10:34:39 a. m.	Recopilando opciones de base de datos
+7/07/2024 10:34:39 a. m.	Recopilando la opción de configuración de ámbito de la base de datos genérica
+7/07/2024 10:34:39 a. m.	Recopilando usuarios
+7/07/2024 10:34:39 a. m.	Recopilando roles
+7/07/2024 10:34:39 a. m.	Recopilando roles de aplicación
+7/07/2024 10:34:39 a. m.	Recopilando pertenencias a roles
+7/07/2024 10:34:39 a. m.	Recopilando grupos de archivos
+7/07/2024 10:34:39 a. m.	Recopilando catálogos de texto completo
+7/07/2024 10:34:39 a. m.	Recopilando ensamblados
+7/07/2024 10:34:39 a. m.	Recopilando certificados
+7/07/2024 10:34:39 a. m.	Recopilando claves asimétricas
+7/07/2024 10:34:39 a. m.	Recopilando claves simétricas
+7/07/2024 10:34:39 a. m.	Recopilando claves simétricas cifradas
+7/07/2024 10:34:39 a. m.	Recopilando esquemas
+7/07/2024 10:34:39 a. m.	Recopilando colecciones de esquemas XML
+7/07/2024 10:34:39 a. m.	Recopilando tipos de datos definidos por el usuario
+7/07/2024 10:34:39 a. m.	Recopilando tipos definidos por el usuario
+7/07/2024 10:34:39 a. m.	Recopilando tipos de tabla
+7/07/2024 10:34:39 a. m.	Recopilando claves únicas para tipos de tabla
+7/07/2024 10:34:39 a. m.	Recopilando claves principales para tipos de tabla
+7/07/2024 10:34:39 a. m.	Recopilando índices para tipos de tablas
+7/07/2024 10:34:39 a. m.	Recopilando restricciones CHECK para tipos de tabla
+7/07/2024 10:34:39 a. m.	Recopilando restricciones DEFAULT para tipos de tabla
+7/07/2024 10:34:39 a. m.	Recopilando funciones de partición
+7/07/2024 10:34:39 a. m.	Recopilando esquemas de partición
+7/07/2024 10:34:39 a. m.	Recopilando funciones
+7/07/2024 10:34:39 a. m.	Recopilando funciones cifradas
+7/07/2024 10:34:39 a. m.	Recopilando agregados
+7/07/2024 10:34:39 a. m.	Recopilando procedimientos
+7/07/2024 10:34:39 a. m.	Recopilando procedimientos cifrados
+7/07/2024 10:34:39 a. m.	Recopilando tablas
+7/07/2024 10:34:40 a. m.	Recopilando claves principales
+7/07/2024 10:34:40 a. m.	Recopilando restricciones UNIQUE
+7/07/2024 10:34:40 a. m.	Recopilando claves externas
+7/07/2024 10:34:40 a. m.	Recopilando restricciones DEFAULT
+7/07/2024 10:34:40 a. m.	Recopilando restricciones CHECK
+7/07/2024 10:34:40 a. m.	Recopilando vistas
+7/07/2024 10:34:40 a. m.	Recopilando vistas cifradas
+7/07/2024 10:34:40 a. m.	Recopilando índices
+7/07/2024 10:34:40 a. m.	Recopilando estadísticas
+7/07/2024 10:34:40 a. m.	Recopilando listas de palabras irrelevantes de índices de texto completo
+7/07/2024 10:34:40 a. m.	Recopilando listas de propiedades de búsqueda
+7/07/2024 10:34:40 a. m.	Recopilando propiedades de búsqueda
+7/07/2024 10:34:40 a. m.	Recopilando índices de texto completo
+7/07/2024 10:34:40 a. m.	Recopilando índices de almacenamiento de columnas
+7/07/2024 10:34:40 a. m.	Recopilando índices espaciales
+7/07/2024 10:34:40 a. m.	Recopilando índices XML
+7/07/2024 10:34:40 a. m.	Recopilando índices XML selectivos
+7/07/2024 10:34:40 a. m.	Recopilando desencadenadores cifrados
+7/07/2024 10:34:40 a. m.	Recopilando desencadenadores
+7/07/2024 10:34:40 a. m.	Recopilando DDL triggers cifrados y de CLR
+7/07/2024 10:34:40 a. m.	Recopilando DDL triggers
+7/07/2024 10:34:40 a. m.	Creación de la restricción perimetral en curso
+7/07/2024 10:34:40 a. m.	Recopilando sinónimos
+7/07/2024 10:34:40 a. m.	Recopilando valores predeterminados
+7/07/2024 10:34:40 a. m.	Recopilando enlaces UDDT de restricción de datos
+7/07/2024 10:34:40 a. m.	Recopilando reglas
+7/07/2024 10:34:40 a. m.	Recopilando enlaces UDDT de restricción de datos
+7/07/2024 10:34:40 a. m.	Recopilando tipos de mensaje
+7/07/2024 10:34:40 a. m.	Recopilando colas
+7/07/2024 10:34:40 a. m.	Recopilando contratos
+7/07/2024 10:34:40 a. m.	Recopilando servicios
+7/07/2024 10:34:40 a. m.	Recopilando notificaciones de eventos
+7/07/2024 10:34:40 a. m.	Recopilando enlaces de servicio remoto
+7/07/2024 10:34:40 a. m.	Recopilando prioridades de Broker
+7/07/2024 10:34:40 a. m.	Recopilando firmas
+7/07/2024 10:34:40 a. m.	Recopilando opciones de compresión
+7/07/2024 10:34:40 a. m.	Recopilando tipos de secuencia
+7/07/2024 10:34:40 a. m.	Recopilando directivas de seguridad
+7/07/2024 10:34:40 a. m.	Recopilar claves de cifrado de columna
+7/07/2024 10:34:40 a. m.	Recopilando claves maestras de columna
+7/07/2024 10:34:40 a. m.	Recopilando orígenes de datos externos
+7/07/2024 10:34:40 a. m.	Recopilando formatos de archivo externos
+7/07/2024 10:34:40 a. m.	Recopilando tablas externas
+7/07/2024 10:34:40 a. m.	Recopilando opciones de compresión de índice XML
+7/07/2024 10:34:40 a. m.	Recopilando propiedades extendidas
+7/07/2024 10:34:40 a. m.	Recopilando ensamblados
+7/07/2024 10:34:41 a. m.	Buscando elementos duplicados en el proyecto
+7/07/2024 10:34:42 a. m.	Ha finalizado el procesamiento de los elementos duplicados
+7/07/2024 10:34:42 a. m.	Finalizó la importación de la base de datos.
+7/07/2024 10:34:42 a. m.	Se guardó un resumen de la importación en la siguiente ubicación: C:\AIRIS\AIRIS.DocBD\AIRIS.DocBD.DataBase\Registros de importación de esquemas\AIRIS.DocBD.DataBase_20240707033432.log
+7/07/2024 10:34:42 a. m.	Haga clic en Finalizar para continuar...

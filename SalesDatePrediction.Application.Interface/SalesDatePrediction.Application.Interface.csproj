@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="IClientesApplication.cs" />
+    <Compile Remove="IUsuariosApplication.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SalesDatePrediction.Application.DTO\SalesDatePrediction.Application.DTO.csproj" />
+    <ProjectReference Include="..\SalesDatePrediction.Transversal.Common\SalesDatePrediction.Transversal.Common.csproj" />
+  </ItemGroup>
+
+</Project>

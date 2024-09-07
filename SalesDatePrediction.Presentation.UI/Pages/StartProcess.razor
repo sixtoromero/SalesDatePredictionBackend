@@ -1,0 +1,237 @@
+﻿@page "/startprocess/{id:int}"
+@using AIRIS.DocBD.Application.DTO
+@using AIRIS.DocBD.Application.DTO.Request
+@using AIRIS.DocBD.Presentation.UI.Helper
+@using AIRIS.DocBD.Transversal.Common
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+@inject IJSRuntime JS
+
+<Page Title="Process">
+
+<h3>Process Information</h3>
+
+<div class="process-buttons">
+    <button class="btn btn-success" @onclick="ProcessTables">Process Tables</button>
+    <button class="btn btn-warning" @onclick="ProcessColumns">Process Columns</button>
+    <button class="btn btn-danger" @onclick="ProcessIndexes">Process Indexes</button>
+
+    @* <button class="btn btn-success" @onclick="ProcessTables" disabled="@IsTablesProcessed">Process Tables</button>
+    <button class="btn btn-warning" @onclick="ProcessColumns" disabled="!IsTablesProcessed || IsColumnsProcessed">Process Columns</button>
+    <button class="btn btn-danger" @onclick="ProcessIndexes" disabled="!IsColumnsProcessed || IsIndexesProcessed">Process Indexes</button> *@
+</div>
+
+</Page>
+
+
+@code {
+
+    private bool IsTablesProcessed = false;
+    private bool IsColumnsProcessed = false;
+    private bool IsIndexesProcessed = false;    
+
+
+    //private DatabasesDTO formModel = new DatabasesDTO();
+
+    [Parameter]
+    public int? Id { get; set; }
+    DatabasesDTO? database = new DatabasesDTO();
+
+    private async Task ProcessTables()
+    {
+        if (Id is not null)
+        {
+            bool result = await ShowConfirmationDialog($"Está seguro de generar las tablas para la base de datos seleccionada:? { database!.DatabaseName }");
+            if (result)
+            {
+                await ShowLoading();
+                // Simula un retraso para crear tablas
+
+                var userId = 1;
+
+                RequestGenDTO reqTable = new RequestGenDTO();
+                reqTable!.GeneralId = Id ?? 0;
+                reqTable!.UserId = userId;
+
+                var respm = await Http.PostAsJsonAsync("/api/Tables/MassTableRegistrationAsync", reqTable);                        
+
+                if (respm.IsSuccessStatusCode)
+                {                            
+                    var respMassTable = await respm.Content.ReadFromJsonAsync<Response<bool>>();                            
+                    if (respMassTable!.IsSuccess)
+                    {
+                        await HideLoading();
+                        IsTablesProcessed = true;
+                        await ShowSuccessMessage("Las tablas han sido creadas correctamente.", "success");
+                    }
+                    else
+                    {
+                        await HideLoading();
+                        await ShowSuccessMessage("Ha ocurrido un error inesperado, por favor intente nuevamente o consulte con su administrador.", "error");
+                        IsTablesProcessed = false;
+                    }
+                }
+                else
+                {
+                    await HideLoading();
+                    await ShowSuccessMessage("Ha ocurrido un error inesperado, por favor intente nuevamente o consulte con su administrador.", "error");
+                    IsTablesProcessed = false;
+                }
+            }            
+        }        
+    }
+
+    private async Task ProcessColumns()
+    {
+        if (Id is not null)
+        {
+            bool result = await ShowConfirmationDialog($"Está seguro de generar las columnas de las tablas de la base de datos:? {database!.DatabaseName}");
+            if (result)
+            {
+                await ShowLoading();
+                // Simula un retraso para crear tablas
+
+                var userId = 1;
+
+                RequestGenDTO reqTable = new RequestGenDTO();
+                reqTable!.GeneralId = Id ?? 0;
+                reqTable!.UserId = userId;
+
+                var respm = await Http.PostAsJsonAsync("/api/Columns/MassColumnsRegistrationAsync", reqTable);
+
+                if (respm.IsSuccessStatusCode)
+                {
+                    var respMassTable = await respm.Content.ReadFromJsonAsync<Response<bool>>();
+                    if (respMassTable!.IsSuccess)
+                    {
+                        await HideLoading();
+                        IsColumnsProcessed = true;
+                        await ShowSuccessMessage("Las columnas han sido creadas correctamente.", "success");
+                    }
+                    else
+                    {
+                        await HideLoading();
+                        await ShowSuccessMessage("Ha ocurrido un error inesperado, por favor intente nuevamente o consulte con su administrador.", "error");
+                        IsColumnsProcessed = false;
+                    }
+                }
+                else
+                {
+                    await HideLoading();
+                    await ShowSuccessMessage("Ha ocurrido un error inesperado, por favor intente nuevamente o consulte con su administrador.", "error");
+                    IsColumnsProcessed = false;
+                }
+            }
+        }
+    }
+
+    private async Task ProcessIndexes()
+    {
+        if (Id is not null)
+        {
+            bool result = await ShowConfirmationDialog($"Está seguro de generar los indixes de las columnas de las tablas de la base de datos:? {database!.DatabaseName}");
+            if (result)
+            {
+                await ShowLoading();
+                // Simula un retraso para crear tablas
+
+                var userId = 1;
+
+                RequestGenDTO reqTable = new RequestGenDTO();
+                reqTable!.GeneralId = Id ?? 0;
+                reqTable!.UserId = userId;
+
+                var respm = await Http.PostAsJsonAsync("/api/Indexes/MassIndexesRegistrationAsync", reqTable);
+
+                if (respm.IsSuccessStatusCode)
+                {
+                    var respMassTable = await respm.Content.ReadFromJsonAsync<Response<bool>>();
+                    if (respMassTable!.IsSuccess)
+                    {
+                        await HideLoading();
+                        IsColumnsProcessed = true;
+                        await ShowSuccessMessage("los indixes de las columnas han sido creadas correctamente.", "success");
+                    }
+                    else
+                    {
+                        await HideLoading();
+                        await ShowSuccessMessage("Ha ocurrido un error inesperado, por favor intente nuevamente o consulte con su administrador.", "error");
+                        IsColumnsProcessed = false;
+                    }
+                }
+                else
+                {
+                    await HideLoading();
+                    await ShowSuccessMessage("Ha ocurrido un error inesperado, por favor intente nuevamente o consulte con su administrador.", "error");
+                    IsColumnsProcessed = false;
+                }
+            }
+        }
+    }
+
+    private async Task ShowLoading()
+    {
+        await JS.InvokeVoidAsync("showLoading");
+    }
+
+    private async Task HideLoading()
+    {
+        await JS.InvokeVoidAsync("hideLoading");
+    }
+
+    private async Task ShowSuccessMessage(string message, string icon)
+    {
+        await JS.InvokeVoidAsync("Swal.fire", new
+        {
+            title = "Success",
+            text = message,
+            icon = icon,
+            confirmButtonText = "OK"
+        });
+    }	
+
+    private async Task<bool> ShowConfirmationDialog(string message)
+    {
+        var result = await JS.InvokeAsync<ConfirmResult>("Swal.fire", new
+        {
+            title = "Confirmation",
+            text = message,
+            icon = "question",
+            showCancelButton = true,
+            confirmButtonText = "Yes",
+            cancelButtonText = "No"
+        });
+
+        return result.IsConfirmed;
+    }
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            var result = await Http.GetFromJsonAsync<Response<DatabasesDTO>>($"/api/Databases/GetAsync?ID={Id}");
+            if (result!.IsSuccess)
+            {
+                if (result.Data is not null)
+                {
+                    database = result!.Data;                    
+                }
+            }
+        }
+    }
+}
+
+
+<style>
+    .process-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 200px;
+        margin: auto;
+    }
+</style>

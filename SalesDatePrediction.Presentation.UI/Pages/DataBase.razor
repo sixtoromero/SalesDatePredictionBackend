@@ -1,0 +1,89 @@
+﻿@page "/database"
+@using AIRIS.DocBD.Transversal.Common
+@using AIRIS.DocBD.Application.DTO
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Configuración de Bases de Datos</h3>
+<button @onclick="AddDataBase" class="btn btn-primary">Agregar Base de dato</button>
+
+@if (result!.IsSuccess)
+{
+    if (result!.Data!.Count() <= 0)
+    {
+        <p><em>Cargando la lista de las bases de datos</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Base de dato
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in result!.Data!)
+                {
+                    <tr>
+                        <td>@item.DatabaseId</td>
+                        <td>@item.DatabaseName</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <button @onclick="() => EditDataBase(item.DatabaseId)" class="btn btn-primary">Editar</button>
+                                    </td>
+                                    <td>
+                                        <button @onclick="() => StartProcess(item.DatabaseId)" class="btn btn-primary">
+                                            <i class="fas fa-spinner"></i> Configurar
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    <span>Se ha generado un error inesperado</span>
+}
+
+@code {
+    Response<IEnumerable<DatabasesDTO>>? result = new Response<IEnumerable<DatabasesDTO>>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        result = await Http.GetFromJsonAsync<Response<IEnumerable<DatabasesDTO>>>("/api/Databases/GetAllAsync");
+    }
+
+    void AddDataBase()
+    {
+        NavigationManager.NavigateTo("/edatabase");
+    }
+
+    void EditDataBase(int id)
+    {
+        NavigationManager.NavigateTo($"/edatabase/{id}");
+    }
+
+    void StartProcess(int id)
+    {
+        NavigationManager.NavigateTo($"/startprocess/{id}");
+    }
+}
