@@ -79,6 +79,11 @@ builder.Services.AddScoped<IEmployeesApplication, EmployeesApplication>();
 builder.Services.AddScoped<IEmployeesDomain, EmployeesDomain>();
 builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 
+builder.Services.AddScoped<IShippersApplication, ShippersApplication>();
+builder.Services.AddScoped<IShippersDomain, ShippersDomain>();
+builder.Services.AddScoped<IShippersRepository, ShippersRepository>();
+
+
 builder.Services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
 var key = Encoding.ASCII.GetBytes(appSettings.Secret);
