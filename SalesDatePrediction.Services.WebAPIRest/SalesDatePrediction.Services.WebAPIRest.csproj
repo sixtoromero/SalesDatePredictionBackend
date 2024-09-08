@@ -26,6 +26,7 @@
     <Compile Remove="Controllers\TablesController.cs" />
     <Compile Remove="Controllers\UsersController.cs" />
     <Compile Remove="Controllers\UsuariosController.cs" />
+    <Compile Remove="Helpers\BuildToken.cs" />
   </ItemGroup>
 
   <ItemGroup>
