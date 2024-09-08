@@ -83,6 +83,10 @@ builder.Services.AddScoped<IShippersApplication, ShippersApplication>();
 builder.Services.AddScoped<IShippersDomain, ShippersDomain>();
 builder.Services.AddScoped<IShippersRepository, ShippersRepository>();
 
+builder.Services.AddScoped<IProductsApplication, ProductsApplication>();
+builder.Services.AddScoped<IProductsDomain, ProductsDomain>();
+builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+
 
 builder.Services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
