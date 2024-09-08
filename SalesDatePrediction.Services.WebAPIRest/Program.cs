@@ -70,6 +70,10 @@ builder.Services.AddScoped<ICustomersApplication, CustomersApplication>();
 builder.Services.AddScoped<ICustomersDomain, CustomersDomain>();
 builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
 
+builder.Services.AddScoped<IOrdersApplication, OrdersApplication>();
+builder.Services.AddScoped<IOrdersDomain, OrdersDomain>();
+builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
+
 builder.Services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
 var key = Encoding.ASCII.GetBytes(appSettings.Secret);

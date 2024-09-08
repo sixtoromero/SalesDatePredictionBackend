@@ -18,6 +18,10 @@ namespace SalesDatePrediction.Transversal.Mapper
             CreateMap<Columns, ColumnsDTO>().ReverseMap();
             CreateMap<Indexes, IndexesDTO>().ReverseMap();
             CreateMap<Constraints, ConstraintsDTO>().ReverseMap();
+            
+            CreateMap<Orders, OrdersDTO>().ReverseMap();
+
+
 
         }
     }
