@@ -20,8 +20,7 @@ namespace SalesDatePrediction.Transversal.Mapper
             CreateMap<Constraints, ConstraintsDTO>().ReverseMap();
             
             CreateMap<Orders, OrdersDTO>().ReverseMap();
-
-
+            CreateMap<Employees, EmployeesDTO>().ReverseMap();
 
         }
     }

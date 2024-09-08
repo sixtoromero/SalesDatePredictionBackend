@@ -12,6 +12,7 @@ using Newtonsoft.Json.Serialization;
 using System.Reflection;
 using System.Text;
 using SalesDatePrediction.Application.Main;
+using SalesDatePrediction.Domain.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,6 +74,10 @@ builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
 builder.Services.AddScoped<IOrdersApplication, OrdersApplication>();
 builder.Services.AddScoped<IOrdersDomain, OrdersDomain>();
 builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
+
+builder.Services.AddScoped<IEmployeesApplication, EmployeesApplication>();
+builder.Services.AddScoped<IEmployeesDomain, EmployeesDomain>();
+builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 
 builder.Services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
