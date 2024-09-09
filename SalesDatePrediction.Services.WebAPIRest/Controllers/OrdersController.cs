@@ -50,5 +50,38 @@ namespace SalesDatePrediction.Services.WebAPIRest.Controllers
                 return BadRequest(response);
             }
         }
+
+        [Produces("application/json")]
+        [HttpPost("InsertAsync")]
+        public async Task<IActionResult> InsertAsync(OrdersDTO modelDto)
+        {
+            Response<bool> response = new Response<bool>();
+            
+            try
+            {
+                if (modelDto == null)
+                    return BadRequest();
+
+                response = await _Application.InsertAsync(modelDto);
+                if (response.IsSuccess)
+                {
+
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Data = false;
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+
+                return BadRequest(response);
+            }
+        }
+
     }
 }

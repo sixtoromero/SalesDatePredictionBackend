@@ -22,6 +22,11 @@ namespace SalesDatePrediction.Domain.Core
             return await _Repository.GetClientOrders(Custid);
         }
 
+        public async Task<bool> InsertAsync(Orders model)
+        {
+            return await _Repository.InsertAsync(model);
+        }
+
         public Task<bool> DeleteAsync(int ID)
         {
             throw new NotImplementedException();
@@ -35,12 +40,7 @@ namespace SalesDatePrediction.Domain.Core
         public Task<Orders> GetAsync(int ID)
         {
             throw new NotImplementedException();
-        }
-
-        public Task<bool> InsertAsync(Orders model)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public Task<bool> UpdateAsync(Orders model)
         {

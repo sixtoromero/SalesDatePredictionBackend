@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SalesDatePrediction.Application.DTO;
 using SalesDatePrediction.Application.Interface;
+using SalesDatePrediction.Domain.Entity;
 using SalesDatePrediction.Domain.Interface;
 using SalesDatePrediction.Transversal.Common;
 
@@ -43,6 +44,32 @@ namespace SalesDatePrediction.Application.Main
             return response;
         }
 
+        public async Task<Response<bool>> InsertAsync(OrdersDTO modelDto)
+        {
+            var response = new Response<bool>();
+            try
+            {
+                var resp = _mapper.Map<Orders>(modelDto);
+                response.Data = await _Domain.InsertAsync(resp);
+
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = "Registro Exitoso!";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Data = false;
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+
+                _logger.LogError(ex.Message);
+            }
+
+            return response;
+        }
+
         public Task<Response<bool>> DeleteAsync(int ID)
         {
             throw new NotImplementedException();
@@ -54,11 +81,6 @@ namespace SalesDatePrediction.Application.Main
         }
 
         public Task<Response<OrdersDTO>> GetAsync(int ID)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public Task<Response<bool>> InsertAsync(OrdersDTO modelDto)
         {
             throw new NotImplementedException();
         }

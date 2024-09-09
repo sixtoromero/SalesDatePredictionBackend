@@ -3,6 +3,7 @@ using SalesDatePrediction.Domain.Entity;
 using SalesDatePrediction.InfraStructure.Interface;
 using SalesDatePrediction.Transversal.Common;
 using System.Data;
+using System.Text.Json;
 
 namespace SalesDatePrediction.InfraStructure.Repository
 {
@@ -28,9 +29,42 @@ namespace SalesDatePrediction.InfraStructure.Repository
             }
         }
 
-        public Task<bool> InsertAsync(Orders model)
+        public async Task<bool> InsertAsync(Orders model)
         {
-            throw new NotImplementedException();
+            using (var connection = _connectionFactory.GetConnection)
+            {
+                try
+                {
+                    var query = "uspAddNewOrder";
+                    var parameters = new DynamicParameters();
+
+                    string jsonOrderDetail = JsonSerializer.Serialize(model.OrdersDetail);
+
+                    parameters.Add("@empid", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                    parameters.Add("@shipperid", model.shipperid);
+                    parameters.Add("@shipname", model.shipname);
+                    parameters.Add("@shipaddress", model.shipaddress);
+                    parameters.Add("@shipcity", model.shipcity);
+                    parameters.Add("@orderdate", model.orderdate);
+                    parameters.Add("@requireddate", model.requireddate);
+                    parameters.Add("@shippeddate", model.shippeddate);
+                    parameters.Add("@freight", model.freight);
+                    parameters.Add("@shipcountry", model.shipcountry);
+                    parameters.Add("@OrderDetailsJSON", jsonOrderDetail);
+
+                    await connection.ExecuteAsync(query, param: parameters, commandType: CommandType.StoredProcedure);
+                    
+                    int orderid = parameters.Get<int>("@orderid");
+
+                    return orderid > 0;
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
+            }
         }
 
         public Task<bool> UpdateAsync(Orders model)

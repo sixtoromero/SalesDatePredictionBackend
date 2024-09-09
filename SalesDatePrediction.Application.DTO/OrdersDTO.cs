@@ -16,5 +16,7 @@
         public string shipregion { get; set; }
         public string? shippostalcode { get; set; }
         public string? shipcountry { get; set; }
+
+        public List<OrderDetailsDTO>? OrdersDetail { get; set; }
     }
 }
