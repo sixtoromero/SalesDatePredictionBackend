@@ -31,6 +31,8 @@ Es importante actualizar la clave de conexión `Connection` en el archivo `appse
 
 A continuación se detallan los procedimientos almacenados que deben ser añadidos a la base de datos para asegurar el correcto funcionamiento de la aplicación:
 
+Importante: en la solución está una carpeta llamada Scripts, allí están todos los procedimientos almacenados que se crearon.
+
 ### 1. `UspgetSalesDatePrediction`
 
 Este procedimiento consulta las predicciones de ventas para los clientes, basándose en sus historiales de pedidos.
